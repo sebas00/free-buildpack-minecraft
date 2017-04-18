@@ -35,7 +35,7 @@ mkdir -p "$APT_STATE_DIR/lists/partial"
 
 echo "-----> Installing s3cmd... "
 apt-get $APT_OPTIONS update | indent
-apt-get $APT_OPTIONS -y --force-yes -d install --reinstall s3cmd mono-runtime mono-runtime-sgen libmono-2.0-1 mono-utils mono-devel mono-mcs mono-csharp-shell mono-4.0-gac monodoc-base monodoc-manual libmono-cil-dev | indent
+apt-get $APT_OPTIONS -y --force-yes -d install --reinstall s3cmd tmux | indent
 apt-get $APT_OPTIONS -y --force-yes -d install --reinstall mono-complete | indent
 mkdir -p $BUILD_DIR/.profile.d
 cat <<EOF >$BUILD_DIR/.profile.d/000_apt.sh
