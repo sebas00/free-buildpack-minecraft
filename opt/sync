@@ -24,8 +24,8 @@ if [ -n "$DROPBBOX_ACCESS_TOKEN" ]; then
 OAUTH_ACCESS_TOKEN=${DROPBOX_ACCESS_TOKEN}
 EOF
   if [ -d world ]; then
-    bin/dropbox_uploader.sh upload world/ /world
-    bin/dropbox_uploader.sh upload plugins/ /plugins
+    bin/dropbox_uploader.sh upload world/ /
+    bin/dropbox_uploader.sh upload plugins/ /
   else
     mkdir -p world
     cd world
