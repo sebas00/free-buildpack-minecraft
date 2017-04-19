@@ -22,5 +22,5 @@ echo "Starting minecraft server..."
 bin/minecraft $port
 main_pid=$!
 
-trap "kill $ngrok_pid $main_pid $sync_pid" SIGTERM
-trap "kill -9 $ngrok_pid $main_pid $sync_pid; exit" SIGKILL
+trap "kill $ngrok_pid $main_pid" SIGTERM
+trap "kill -9 $ngrok_pid $main_pid; exit" SIGKILL
