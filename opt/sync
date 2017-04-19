@@ -18,3 +18,20 @@ EOF
   fi
   rm .s3cfg
 fi
+
+if [ -n "$DROPBBOX_ACCESS_TOKEN" ]; then
+  cat << EOF > .dropbox_uploader
+OAUTH_ACCESS_TOKEN=${DROPBOX_ACCESS_TOKEN}
+EOF
+  if [ -d world ]; then
+    bin/dropbox_uploader.sh upload world/ /world
+    bin/dropbox_uploader.sh upload plugins/ /plugins
+  else
+    mkdir -p world
+    cd world
+    bin/dropbox_uploader.sh download /world
+    bin/dropbox_uploader.sh download /plugins
+    cd ..
+  fi
+  rm .dropbox_uploader
+fi
