@@ -29,13 +29,10 @@ EOF
     bin/dropbox_uploader.sh upload world_the_end/ /
     bin/dropbox_uploader.sh upload plugins/ /
   else
-    mkdir -p world
-    cd world
-    ../bin/dropbox_uploader.sh download /world
-    ../bin/dropbox_uploader.sh download /world_nether
-    ../bin/dropbox_uploader.sh download /world_the_end
-    ../bin/dropbox_uploader.sh download /plugins
-    cd ..
+    bin/dropbox_uploader.sh download /world
+    bin/dropbox_uploader.sh download /world_nether
+    bin/dropbox_uploader.sh download /world_the_end
+    bin/dropbox_uploader.sh download /plugins
   fi
   rm .dropbox_uploader
 fi
