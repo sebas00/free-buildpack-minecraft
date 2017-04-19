@@ -31,3 +31,6 @@ esac
 
 echo "Starting: minecraft ${mc_port}"
 eval "java -Xmx${heap} -Xms${heap} -jar minecraft.jar nogui &"
+
+trap "kill $sync_pid" SIGTERM
+trap "kill -9 $sync_pid; exit" SIGKILL
