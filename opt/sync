@@ -19,7 +19,7 @@ EOF
   rm .s3cfg
 fi
 
-if [ -n "$DROPBBOX_ACCESS_TOKEN" ]; then
+if [ -n "$DROPBOX_ACCESS_TOKEN" ]; then
   cat << EOF > .dropbox_uploader
 OAUTH_ACCESS_TOKEN=${DROPBOX_ACCESS_TOKEN}
 EOF
