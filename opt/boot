@@ -19,7 +19,7 @@ eval "ruby -rwebrick -e'WEBrick::HTTPServer.new(:BindAddress => \"0.0.0.0\", :Po
 
 # Start minecraft server
 echo "Starting minecraft server..."
-bin/minecraft
+bin/minecraft $port
 main_pid=$!
 
 trap "kill $ngrok_pid $main_pid $sync_pid" SIGTERM
