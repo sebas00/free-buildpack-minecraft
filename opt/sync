@@ -24,15 +24,13 @@ if [ -n "$DROPBOX_ACCESS_TOKEN" ]; then
 OAUTH_ACCESS_TOKEN=${DROPBOX_ACCESS_TOKEN}
 EOF
   if [ -d world ]; then
-    bin/dropbox_uploader.sh upload world/ /
-    bin/dropbox_uploader.sh upload world_nether/ /
-    bin/dropbox_uploader.sh upload world_the_end/ /
-    bin/dropbox_uploader.sh upload plugins/ /
+    tar -czvf backup.tar.gz world world_nether world_the_end plugins
+    bin/dropbox_uploader.sh upload backup.tar.gz /
+    rm backup.tar.gz
   else
-    bin/dropbox_uploader.sh download /world
-    bin/dropbox_uploader.sh download /world_nether
-    bin/dropbox_uploader.sh download /world_the_end
-    bin/dropbox_uploader.sh download /plugins
+    bin/dropbox_uploader.sh download /backup.tar.gz
+    tar -xzvf backup.tar.gz
+    rm backup.tar.gz
   fi
   rm .dropbox_uploader
 fi
