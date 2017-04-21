@@ -13,8 +13,11 @@ var port = regex.exec(log)[1]
 // Start server to forward to the ngrok minecraft server
 var server = new Server()
 server.on('connection', function (client) {
+  console.log('New server connection')
   var socket = new Socket()
+  console.log('Connecting to 0.tcp.ngrok.io:' + port)
   socket.connect(port, '0.tcp.ngrok.io', function () {
+    console.log('Server connection successful')
     socket.pipe(client)
     client.pipe(socket)
   })
