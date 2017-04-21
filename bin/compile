@@ -24,6 +24,16 @@ BUILD_DIR=$1
 CACHE_DIR=$2
 OPT_DIR=$BP_DIR/../opt/
 
+mkdir -p $BUILD_DIR/bin
+[ ! -f $BUILD_DIR/bin/minecraft ]   && cp $OPT_DIR/minecraft $BUILD_DIR/bin
+[ ! -f $BUILD_DIR/bin/sync ]        && cp $OPT_DIR/sync $BUILD_DIR/bin
+[ ! -f $BUILD_DIR/index.js ]        && cp $OPT_DIR/index.js $BUILD_DIR
+[ ! -f $BUILD_DIR/package.json]     && cp $OPT_DIR/package.json $BUILD_DIR
+
+chmod +x $BUILD_DIR/bin/minecraft
+chmod +x $BUILD_DIR/bin/sync
+chmod +x $BUILD_DIR/index.js
+
 export_env_dir $3
 
 APT_CACHE_DIR="$CACHE_DIR/apt/cache"
@@ -76,13 +86,3 @@ if [ -n "${MINECRAFT_EULA:-""}" ]; then
   echo "eula=true" >> $BUILD_DIR/eula.txt
   echo "done"
 fi
-
-mkdir -p $BUILD_DIR/bin
-[ ! -f $BUILD_DIR/bin/minecraft ]   && cp $OPT_DIR/minecraft $BUILD_DIR/bin
-[ ! -f $BUILD_DIR/bin/sync ]        && cp $OPT_DIR/sync $BUILD_DIR/bin
-[ ! -f $BUILD_DIR/index.js ]        && cp $OPT_DIR/index.js $BUILD_DIR
-[ ! -f $BUILD_DIR/package.json]     && cp $OPT_DIR/package.json $BUILD_DIR
-
-chmod +x $BUILD_DIR/bin/minecraft
-chmod +x $BUILD_DIR/bin/sync
-chmod +x $BUILD_DIR/index.js
