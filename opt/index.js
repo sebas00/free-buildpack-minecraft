@@ -11,7 +11,7 @@ var regex = /URL:tcp:\/\/0.tcp.ngrok.io:(\d{5})/g
 var port = regex.exec(log)[1]
 
 // Start server to forward to the ngrok minecraft server
-let server = new Server()
+var server = new Server()
 server.on('connection', function (client) {
   var socket = new Socket()
   socket.connect(port, '0.tcp.ngrok.io', function () {
