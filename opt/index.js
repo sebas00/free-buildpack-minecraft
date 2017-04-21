@@ -1,20 +1,20 @@
 #!/usr/bin/env nodejs
 
-const net = require('net')
-const fs = require('fs')
-const Socket = net.Socket
-const Server = net.Server
+var net = require('net')
+var fs = require('fs')
+var Socket = net.Socket
+var Server = net.Server
 
 // Get port of ngrok from ngrok.log
-const log = fs.readFileSync('ngrok.log', {encoding: 'utf-8'})
-const regex = /URL:tcp:\/\/0.tcp.ngrok.io:(\d{5})/g
-const port = regex.exec(log)[1]
+var log = fs.readFileSync('ngrok.log', {encoding: 'utf-8'})
+var regex = /URL:tcp:\/\/0.tcp.ngrok.io:(\d{5})/g
+var port = regex.exec(log)[1]
 
 // Start server to forward to the ngrok minecraft server
 let server = new Server()
-server.on('connection', (client) => {
+server.on('connection', function (client) {
   var socket = new Socket()
-  socket.connect(port, '0.tcp.ngrok.io', () => {
+  socket.connect(port, '0.tcp.ngrok.io', function () {
     socket.pipe(client)
     client.pipe(socket)
   })
