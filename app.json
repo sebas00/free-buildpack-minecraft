@@ -26,9 +26,19 @@
     "AWS_SECRET_KEY": {
       "description": "The AWS secret key for the S3 Bucket",
       "required": false
+    },
+    "DROPBOX_ACCESS_TOKEN": {
+      "description": "The dropbox access token for syncing",
+      "required": false
     }
   },
   "buildpacks": [
+    {
+      "url": "https://github.com/heroku/heroku-buildpack-jvm-common.git"
+    },
+    {
+      "url": "https://github.com/heroku/heroku-buildpack-nodejs.git"
+    },
     {
       "url": "https://github.com/kr/heroku-buildpack-inline.git"
     }
