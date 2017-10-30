@@ -68,7 +68,7 @@ mv dropbox_uploader.sh $BUILD_DIR/bin
 echo "done"
 
 if [ ! "${CUSTOM_MINECRAFT_VERSION:-""}" ]; then
-  minecraft_version=${MINECRAFT_VERSION:-"1.11.2"}
+  minecraft_version=${MINECRAFT_VERSION:-"1.12.2"}
   minecraft_url="https://s3.amazonaws.com/Minecraft.Download/versions/${minecraft_version}/minecraft_server.${minecraft_version}.jar"
 
   echo -n "-----> Installing Minecraft ${minecraft_version}... "
@@ -86,7 +86,8 @@ fi
 mkdir -p $BUILD_DIR/bin
 [ ! -f $BUILD_DIR/bin/minecraft ]   && cp $OPT_DIR/minecraft $BUILD_DIR/bin
 [ ! -f $BUILD_DIR/bin/sync ]        && cp $OPT_DIR/sync $BUILD_DIR/bin
-[ ! -f $BUILD_DIR/index.js ]        && cp $OPT_DIR/index.js $BUILD_DIR
+[ ! -f $BUILD_DIR/package.json ]        && touch $BUILD_DIR/package.json
+[ ! -f $BUILD_DIR/bin/index.js ]        && cp $OPT_DIR/index.js $BUILD_DIR/bin
 
 chmod +x $BUILD_DIR/bin/minecraft
 chmod +x $BUILD_DIR/bin/sync
