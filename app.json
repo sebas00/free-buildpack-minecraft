@@ -37,7 +37,7 @@
       "url": "https://github.com/heroku/heroku-buildpack-jvm-common.git"
     },
     {
-      "url": "https://github.com/heroku/heroku-buildpack-nodejs.git"
+      "url": "https://github.com/dtaniwaki/heroku-buildpack-nodejs-without-package-json.git"
     },
     {
       "url": "https://github.com/kr/heroku-buildpack-inline.git"
