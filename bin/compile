@@ -86,7 +86,6 @@ fi
 mkdir -p $BUILD_DIR/bin
 [ ! -f $BUILD_DIR/bin/minecraft ]   && cp $OPT_DIR/minecraft $BUILD_DIR/bin
 [ ! -f $BUILD_DIR/bin/sync ]        && cp $OPT_DIR/sync $BUILD_DIR/bin
-[ ! -f $BUILD_DIR/package.json ]    && cp $OPT_DIR/package.json $BUILD_DIR/package.json
 [ ! -f $BUILD_DIR/bin/index.js ]        && cp $OPT_DIR/index.js $BUILD_DIR/bin
 
 chmod +x $BUILD_DIR/bin/minecraft
