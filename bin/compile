@@ -42,10 +42,10 @@ if ! [ -e /tmp/jvm-common ]; then
 fi
 
 echo "-----> Extracting JVM"
-VERSION=${JVM_VERSION:-"1.8"}
 . /tmp/jvm-common/bin/util
 . /tmp/jvm-common/bin/java
-install_java ${BUILD_DIR} ${VERSION}
+javaVersion=$(detect_java_version ${BUILD_DIR})
+install_java ${BUILD_DIR} ${javaVersion}
 
 echo "-----> Installing NodeJS"
 VERSION="6.11.5"
