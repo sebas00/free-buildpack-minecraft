@@ -45,7 +45,7 @@ fi
 echo "-----> Extracting NodeJS"
 mkdir -p $CACHE_DIR/$NAME
 mkdir -p $BUILD_DIR/vendor
-tar -xzf $CACHE_DIR/$FILE -C $CACHE_DIR
+tar -xf $CACHE_DIR/$FILE -C $CACHE_DIR
 mv $CACHE_DIR/$NAME $BUILD_DIR/vendor/nodejs
 
 echo "-----> Exporting PATHs"
