@@ -36,7 +36,7 @@ mkdir -p "$APT_STATE_DIR/lists/partial"
 echo "-----> Installing NodeJS"
 VERSION="6.11.5"
 NAME=node-v${VERSION}-linux-x64
-FILE=node-${NAME}.tar.gz
+FILE=${NAME}.tar.gz
 if ! [ -e $CACHE_DIR/$FILE ]; then
   echo "-----> Downloading NodeJS binaries"
   curl https://nodejs.org/dist/v${VERSION}/${FILE} -L -s -o $CACHE_DIR/$FILE
