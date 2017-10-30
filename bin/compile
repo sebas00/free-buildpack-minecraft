@@ -48,7 +48,7 @@ mkdir -p $BUILD_DIR/vendor
 tar -xf $CACHE_DIR/$FILE -C $CACHE_DIR
 mv $CACHE_DIR/$NAME $BUILD_DIR/vendor/nodejs
 
-echo "-----> Exporting PATHs"
+echo "-----> Exporting NodeJS PATHs"
 PROFILE="$BUILD_DIR/.profile.d/nodejs.sh"
 mkdir -p $(dirname $PROFILE)
 echo 'export PATH="$PATH:$HOME/vendor/nodejs/bin"' >> $PROFILE
