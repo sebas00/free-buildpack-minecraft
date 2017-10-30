@@ -43,6 +43,8 @@ fi
 
 echo "-----> Extracting JVM"
 VERSION=${JVM_VERSION:-"1.8"}
+. /tmp/jvm-common/bin/util
+. /tmp/jvm-common/bin/java
 install_java ${BUILD_DIR} ${VERSION}
 
 echo "-----> Installing NodeJS"
