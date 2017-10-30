@@ -33,6 +33,18 @@ APT_OPTIONS="-o debug::nolocking=true -o dir::cache=$APT_CACHE_DIR -o dir::state
 mkdir -p "$APT_CACHE_DIR/archives/partial"
 mkdir -p "$APT_STATE_DIR/lists/partial"
 
+echo "-----> Installing JVM"
+if ! [ -e /tmp/jvm-common ]; then
+  echo "-----> Downloading JVM binaries"
+  JVM_COMMON_BUILDPACK="https://codon-buildpacks.s3.amazonaws.com/buildpacks/heroku/jvm-common.tgz"
+  mkdir -p /tmp/jvm-common
+  curl $JVM_COMMON_BUILDPACK -L -s | tar xzm -C /tmp/jvm-common --strip-components=1
+fi
+
+echo "-----> Extracting JVM"
+VERSION=${JVM_VERSION:-"1.8"}
+install_java ${BUILD_DIR} ${VERSION}
+
 echo "-----> Installing NodeJS"
 VERSION="6.11.5"
 NAME=node-v${VERSION}-linux-x64
