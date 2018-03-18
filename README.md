@@ -20,7 +20,9 @@ Then, install the [Heroku toolbelt](https://toolbelt.heroku.com/).
 Create a Heroku app, set your ngrok token, and push:
 
 ```sh-session
-$ heroku create --buildpack https://github.com/jkutner/heroku-buildpack-minecraft
+$ heroku create
+$ heroku buildpacks:add heroku/jvm
+$ heroku buildpacks:add https://github.com/jkutner/heroku-buildpack-minecraft
 $ heroku config:set NGROK_API_TOKEN="xxxxx"
 $ git push heroku master
 ```
@@ -60,6 +62,22 @@ $ heroku config:set AWS_SECRET_KEY=xxx
 
 The buildpack will sync your world to the bucket every 60 seconds, but this is configurable by setting the `AWS_SYNC_INTERVAL` config var.
 
+## Connecting to the server console
+
+The Minecraft server runs inside a `screen` session. You can use [Heroku Exec](https://devcenter.heroku.com/articles/heroku-exec) to connect to your server console.
+
+Once you have Heroku Exec installed, you can connect to the console using 
+
+```
+$ heroku ps:exec
+Establishing credentials... done
+Connecting to web.1 on ⬢ lovely-minecraft-2351...
+$ screen -r minecraft
+```
+
+**WARNING** You are now connected to the Minecraft server. Use `Ctrl-A Ctrl-D` to exit the screen session. 
+(If you hit `Ctrl-C` while in the session, you'll terminate the Minecraft server.)
+
 ## Customizing
 
 ### ngrok
@@ -67,7 +85,7 @@ The buildpack will sync your world to the bucket every 60 seconds, but this is c
 You can customize ngrok by setting the `NGROK_OPTS` config variable. For example:
 
 ```
-$ heroku config:set NGROK_OPTS="-subdomain=my-subdomain"
+$ heroku config:set NGROK_OPTS="--remote-addr 1.tcp.ngrok.io:25565"
 ```
 
 ### Minecraft

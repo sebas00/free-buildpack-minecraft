@@ -53,5 +53,12 @@ tail_pid=$!
 trap "kill $ngrok_pid $main_pid $sync_pid $tail_pid" SIGTERM
 trap "kill -9 $ngrok_pid $main_pid $sync_pid $tail_pid; exit" SIGKILL
 
+echo "Tailing log"
+eval "tail -f screenlog.0 &"
+tail_pid=$!
+
+trap "kill $ngrok_pid $main_pid $sync_pid $tail_pid" SIGTERM
+trap "kill -9 $ngrok_pid $main_pid $sync_pid $tail_pid; exit" SIGKILL
+
 # Start forwarding connection
 node bin/index.js
