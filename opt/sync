@@ -30,9 +30,6 @@ EOF
   else
     if bin/dropbox_uploader.sh download /backup.tar.gz
     then
-      if [ -d plugins ]; then
-        rm -rf plugins
-      fi
       tar -xzvf backup.tar.gz
       rm backup.tar.gz
     fi
