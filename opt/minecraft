@@ -50,15 +50,18 @@ echo "Tailing log"
 eval "tail -f screenlog.0 &"
 tail_pid=$!
 
-trap "kill $ngrok_pid $main_pid $sync_pid $tail_pid" SIGTERM
-trap "kill -9 $ngrok_pid $main_pid $sync_pid $tail_pid; exit" SIGKILL
+sigterm() {
+  bin/sync
+  kill $ngrok_pid $main_pid $sync_pid $tail_pid
+}
 
-echo "Tailing log"
-eval "tail -f screenlog.0 &"
-tail_pid=$!
+sigkill() {
+  bin/sync
+  kill -9 $ngrok_pid $main_pid $sync_pid $tail_pid; exit
+}
 
-trap "kill $ngrok_pid $main_pid $sync_pid $tail_pid" SIGTERM
-trap "kill -9 $ngrok_pid $main_pid $sync_pid $tail_pid; exit" SIGKILL
+trap sigterm SIGTERM
+trap sigkill SIGKILL
 
 # Start website
 node bin/index.js
