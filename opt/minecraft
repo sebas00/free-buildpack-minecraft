@@ -64,4 +64,4 @@ trap sigterm SIGTERM
 trap sigkill SIGKILL
 
 # Start website
-node bin/index.js
+node bin/server.js
