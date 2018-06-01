@@ -17,11 +17,13 @@ options.headers = {
 options.rejectUnauthorized = false;
 
 var req = http.request(options);
+console.log(req);
 req.end();
 
 if(args.length == 0) {
 	var listen = 50001;
 	req.on('upgrade', function(res, socket, head) {
+		console.log(socket);
         socket.on('error', function(e) {
             console.log('problem with request on upgrade request: ' + e.message);
         });
@@ -30,13 +32,17 @@ if(args.length == 0) {
 		console.log('Connection established. Listening on localhost:' + listen);
 		
 		var server = net.createServer(function(c) {
+			console.log('create server');
 			c.on('data', function(chunk) {
 				socket.write(chunk);
 			}).on('end', function() {
 				socket.end();
 			}).on('error', function(e) {
 		console.log('problem with request - remote socketwrite: ' + e.message);
-		socket.end();
+		req.end();
+		req = http.request(options);
+		
+		//req.end()
 	});;
 			socket.on('data', function(chunk) {
                 

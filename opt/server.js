@@ -36,7 +36,7 @@ srv.on('upgrade', function(req, socket, head) {
 		'\r\n');
 	var remote = net.connect(port, host);
 	remote.on('end', function() {
-		socket.end();})
+		remote = net.connect(port, host);})
 	socket.pipe(remote);
 	remote.pipe(socket);
 });
